@@ -1,0 +1,80 @@
+using System;
+using System.Runtime.InteropServices;
+
+namespace Tic_tac_toe
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            char[] table = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            int currentplayer = 1; // 1 - x, 2- 0
+            int choice;
+            bool validInput;
+
+
+            // вывод поля в консоль
+            void board()
+            {
+                Console.WriteLine($"{table[0]} | {table[1]} | {table[2]}");
+                Console.WriteLine("_______________");
+                Console.WriteLine($"{table[3]} | {table[4]} | {table[5]}");
+                Console.WriteLine("_______________");
+                Console.WriteLine($"{table[6]} | {table[7]} | {table[8]}");
+            }
+            bool CheckForWin()
+            {
+                return (table[0] == table[1] && table[1] == table[2]);
+                return (table[3] == table[4] && table[4] == table[5]);
+                return (table[6] == table[7] && table[7] == table[8]);
+                return (table[0] == table[3] && table[3] == table[6]);
+                return (table[1] == table[4] && table[4] == table[7]);
+                return (table[2] == table[5] && table[5] == table[8]);
+                return (table[2] == table[4] && table[4] == table[6]);
+                return (table[0] == table[4] && table[4] == table[8]);
+
+            }
+            bool CheckForDraw()
+            {
+                foreach (char cell in table)
+                {
+                    if (cell != 'X' && cell != 0) return false;
+                }
+                return true;
+
+            }
+
+            do {
+                Console.Clear();
+                board();
+
+                Console.WriteLine($"ща {currentplayer}");
+                while (true)
+                {
+                    choice = int.Parse(Console.ReadLine());
+                    if ((choice >= 1) && (choice <= 9))
+                    {
+                        if (!(table[choice - 1] == 'x') && !(table[choice - 1] == '0'))
+                        {
+                            validInput = true;
+                            break;
+                        }
+                            
+                    }
+                    Console.WriteLine("Введи норм число");
+
+                }
+
+            if (validInput == true)
+                {
+                    // проверка на ячейку
+                    table[choice - 1] = (currentplayer == 1) ? 'X' : '0';
+                    //проверка на победу
+                    // проверка на ничью
+                    // меняем игрока
+                    currentplayer = (currentplayer ==1) ? 2 : 1;
+                }
+            } while (true);
+        }
+    }
+}
